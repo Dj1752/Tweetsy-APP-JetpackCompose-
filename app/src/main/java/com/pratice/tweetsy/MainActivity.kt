@@ -10,6 +10,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import com.pratice.tweetsy.screen.DetailsScreen
 import com.pratice.tweetsy.ui.theme.TweetsyTheme
 
 class MainActivity : ComponentActivity() {
@@ -18,12 +19,7 @@ class MainActivity : ComponentActivity() {
         setContent {
             TweetsyTheme {
                 // A surface container using the 'background' color from the theme
-                Surface(
-                    modifier = Modifier.fillMaxSize(),
-                    color = MaterialTheme.colorScheme.background
-                ) {
-                    Greeting("Android")
-                }
+               DetailsScreen()
             }
         }
     }
