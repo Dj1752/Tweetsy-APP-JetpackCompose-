@@ -10,6 +10,12 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.navigation.NavType
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.rememberNavController
+import androidx.navigation.navArgument
+import com.pratice.tweetsy.screen.CategoryScreen
 import com.pratice.tweetsy.screen.DetailsScreen
 import com.pratice.tweetsy.ui.theme.TweetsyTheme
 
@@ -18,25 +24,31 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             TweetsyTheme {
-                // A surface container using the 'background' color from the theme
-               DetailsScreen()
+                App()
             }
         }
     }
 }
 
-@Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = "Hello $name!",
-        modifier = modifier
-    )
-}
 
-@Preview(showBackground = true)
 @Composable
-fun GreetingPreview() {
-    TweetsyTheme {
-        Greeting("Android")
+fun App() {
+    val navController = rememberNavController()
+    NavHost(navController = navController, startDestination ="category") {
+        composable(route = "category") {
+            CategoryScreen(onClick = {
+
+            })
+        }
+        composable(
+            route = "details/{category}", arguments = listOf(
+            navArgument("category") {
+                type = NavType.StringType
+            }
+        )) {
+            DetailsScreen()
+        }
+
     }
+
 }

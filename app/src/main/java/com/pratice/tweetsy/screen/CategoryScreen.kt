@@ -1,6 +1,7 @@
 package com.pratice.tweetsy.screen
 
 import androidx.compose.foundation.border
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.PaddingValues
@@ -28,7 +29,7 @@ import com.pratice.tweetsy.R
 import com.pratice.tweetsy.viewmodels.CategoryViewModel
 
 @Composable
-fun CategoryScreen() {
+fun CategoryScreen(onClick:(category:String) -> Unit) {
   val categoryViewModel :CategoryViewModel = viewModel()
    val categories = categoryViewModel.categories.collectAsState()
     LazyVerticalGrid(columns = GridCells.Fixed(2),
@@ -36,18 +37,19 @@ fun CategoryScreen() {
         verticalArrangement = Arrangement.SpaceAround,)
        {
         items(categories.value.distinct()){
-            CategoryItem(category = it)
+            CategoryItem(category = it, onClick)
         }
     }
 
 }
 
 @Composable
-fun CategoryItem(category: String) {
+fun CategoryItem(category: String,onClick:(category:String) -> Unit) {
 
     Box(
         modifier = Modifier
             .padding(4.dp)
+            .clickable { onClick(category) }
             .size(160.dp)
             .clip(RoundedCornerShape(8.dp))
             .border(1.dp, Color(0xFFEEEEEE))
