@@ -37,7 +37,7 @@ fun App() {
     NavHost(navController = navController, startDestination ="category") {
         composable(route = "category") {
             CategoryScreen(onClick = {
-
+navController.navigate("detail/$it")
             })
         }
         composable(

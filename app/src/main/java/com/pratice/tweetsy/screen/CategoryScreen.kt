@@ -24,13 +24,14 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.pratice.tweetsy.R
 import com.pratice.tweetsy.viewmodels.CategoryViewModel
 
 @Composable
 fun CategoryScreen(onClick:(category:String) -> Unit) {
-  val categoryViewModel :CategoryViewModel = viewModel()
+  val categoryViewModel :CategoryViewModel = hiltViewModel()
    val categories = categoryViewModel.categories.collectAsState()
     LazyVerticalGrid(columns = GridCells.Fixed(2),
         contentPadding = PaddingValues(8.dp),
